@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = {"src/test/java/roboform/features"},
         glue = "roboform/steps",
-        tags= {"@SingleElementTesting, @FormFillingTesting"},
+//        tags= {"@tag1, @tag2"},
         plugin = {
                 "json:target/cucumber.json",
                 "html:target/site/cucumber-pretty"

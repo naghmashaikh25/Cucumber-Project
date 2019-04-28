@@ -219,13 +219,13 @@ public class SingleElementSteps extends BaseUtils {
     }
 
 
-    @Then("Select the Marital Status from the dropdown list {string}.")
+    @And("Select the Marital Status from the dropdown list {string}.")
     public void selectTheMaritalStatusFromTheDropdownList(String valueOfDropdownItemIndex) {
         this.pageObj.selectIndexOfMaritalStatusDropDownList(valueOfDropdownItemIndex);
     }
 
 
-    @Then("Check the selected value {string} and provide value for the mismatch error {string}")
+    @And("Check the selected value {string} and provide value for the mismatch error {string}")
     public void checkTheSelectedValueAndProvideValueForTheMismatchError(String expectedValue , String errorMessage) {
         String selectedValueOfMaritalStatus = this.pageObj.getMaritalStatusSelectedValue();
 
@@ -257,7 +257,7 @@ public class SingleElementSteps extends BaseUtils {
     }
 
 
-    @Then("Select the My Income from the dropdown list {string}.")
+    @And("Select the My Income from the dropdown list {string}.")
     public void selectTheMyIncomeFromTheDropdownList(String valueOfDropdownItemIndex) {
         this.pageObj.selectIndexOfIncomeDropDownList(valueOfDropdownItemIndex);
     }

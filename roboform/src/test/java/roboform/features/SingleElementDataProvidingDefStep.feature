@@ -11,9 +11,9 @@ Feature: Testing of Single Element data providing
 
     Scenario Outline: Selecting Initials Name from dropdown list item
       When Open Drop down list for selecting Initials Name.
-      Then Select the Initials name from the dropdown list "<dropdown indexing for Initial Name>".
-      And Check the Initials name for selected value "<expected value>" and provide value for the mismatch error "<if not match then Message>"
-      And Click on the clear button
+      And  Select the Initials name from the dropdown list "<dropdown indexing for Initial Name>".
+      And  Check the Initials name for selected value "<expected value>" and provide value for the mismatch error "<if not match then Message>"
+      And  Click on the clear button
 
     Examples:
       |dropdown indexing for Initial Name|expected value  |if not match then Message    |
@@ -105,7 +105,7 @@ Feature: Testing of Single Element data providing
 
     Scenario Outline: Selecting Marital Status from dropdown list item
     When Open Drop down list for selecting Marital Status.
-    Then Select the Marital Status from the dropdown list "<drop down indexing>".
+    And  Select the Marital Status from the dropdown list "<drop down indexing>".
     And  Check the selected value "<expected value>" and provide value for the mismatch error "<if not match then Message>"
     And  Click on the clear button
 
@@ -135,7 +135,7 @@ Feature: Testing of Single Element data providing
 
     Scenario Outline: Selecting My Income from dropdown list item
       When Open Drop down list for selecting My Income.
-      Then Select the My Income from the dropdown list "<drop down indexing>".
+      And  Select the My Income from the dropdown list "<drop down indexing>".
       And  Check My Income selected value "<expected value>" and provide value for the mismatch error "<if not match then Message>"
       And  Click on the clear button
 
