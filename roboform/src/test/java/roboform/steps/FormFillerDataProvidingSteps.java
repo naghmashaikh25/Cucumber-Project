@@ -1,9 +1,14 @@
 package roboform.steps;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import roboform.Base.BaseUtils;
 import roboform.pages.SingleElementDataProviding;
+
+import static org.junit.Assert.*;
+
 
 public class FormFillerDataProvidingSteps extends BaseUtils {
 
@@ -22,7 +27,10 @@ public class FormFillerDataProvidingSteps extends BaseUtils {
 
 
     @Then("User should see {string} as Header title in Page")
-    public void userShouldSeeAsHeaderTitleInPage(String arg0) {
-
+    public void userShouldSeeAsHeaderTitleInPage(String headerTitleValue) {
+        String pageHeaderTitleValue = this.pageObj.getHeaderTitle();
+        assertEquals("Desired page is not loaded" , headerTitleValue , pageHeaderTitleValue);
     }
+
+
 }

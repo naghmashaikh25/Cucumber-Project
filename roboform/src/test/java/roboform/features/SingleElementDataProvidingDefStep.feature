@@ -1,8 +1,9 @@
 @SingleElementTesting
-Feature: Testing of Single Element data providing
+Feature: Testing of Single Elements correct data providing
   We need to Demonstrate for selecting
   Each and every element of the Form
   and to show the ability to play around with them
+
 
   Background: User navigate to the page of Form Filler
     Given I am on the Form Filler page on URL "https://www.roboform.com/filling-test-custom-fields"
@@ -12,22 +13,21 @@ Feature: Testing of Single Element data providing
     Scenario Outline: Selecting Initials Name from dropdown list item
       When Open Drop down list for selecting Initials Name.
       And  Select the Initials name from the dropdown list "<dropdown indexing for Initial Name>".
-      And  Check the Initials name for selected value "<expected value>" and provide value for the mismatch error "<if not match then Message>"
-      And  Click on the clear button
+      Then Check the Initials name for selected value "<expected value>" and provide value for the mismatch error "<if not match then Message>"
+      When Click on the clear button
+      Then Data in all filed should be empty
 
     Examples:
       |dropdown indexing for Initial Name|expected value  |if not match then Message    |
       |0                                 |Mr              |                             |
       |1                                 |Mrs             |                             |
       |2                                 |Dr              |                             |
-      |0                                 |M               |Selected item is not matched |
-      |1                                 |Rs              |Selected item is not matched |
-      |2                                 |R               |Selected item is not matched |
 
 
     Scenario Outline: Selecting Initials Name via radio buttons
       When Select the Initials name via radio buttons "<radio Button position indexing>".
-      And Click on the clear button
+      When Click on the clear button
+      Then Data in all filed should be empty
 
       Examples:
         |radio Button position indexing |
@@ -36,44 +36,80 @@ Feature: Testing of Single Element data providing
         |3                              |
         |4                              |
 
-
-    Scenario: Insert data to Message text field
-      When set "This value need to set the message text field" to message text field
-#      When set "123134.4" to message text field
-      And Message data value should be alphanumeric values
+    Scenario Outline: Insert data to Message text field
+      When set "<message text value>" to message text field
+      Then Check the Message text value existence otherwise then the error "<if not match then error message>"
+      And Message data value should not be only numeric values
       And Check validation of the message data value between "0" to "256"
-      And Click on the clear button
+      When Click on the clear button
+      Then Data in all filed should be empty
+
+      Examples:
+      |message text value                           |if not match then error message                |
+      |This value need to set the message text field|                                               |
+      |This value should be less than 256 characters|                                               |
 
 
-    Scenario: Insert data to Comment text field
-      When set "Comment text field will have brief information of the this Form" to comment text field
-      And Comment data value should be alphanumeric values
-      And Check validation of the Comment data value between "0" to "256"
-      And Click on the clear button
+    Scenario Outline: Insert data to Comment text field
+      When set "<comment text value>" to comment text field
+      Then Check the Comment text value existence otherwise then the error "<if not match then error message>"
+      And  Comment data value should not be only numeric values
+      And  Check validation of the Comment data value between "0" to "256"
+      When Click on the clear button
+      Then Data in all filed should be empty
+
+      Examples:
+        |comment text value                                              |if not match then error message                |
+        |Comment text field will have brief information of the this Form |                                               |
+        |This value should be less than 256 characters                   |                                               |
 
 
-    Scenario: Insert data to Your Comment text field
-      When set "your comment text field will have brief information about you" to your comment text field
-      And Your Comment data value should be alphanumeric values
-      And Check validation of the Your Comment data value between "0" to "256"
-      And Click on the clear button
+    Scenario Outline: Insert data to Your Comment text field
+      When set "<your comment text value>" to your comment text field
+      Then Check the your comment text value existence otherwise then the error "<if not match then error message>"
+      And  Your Comment data value should not be only numeric values
+      And  Check validation of the Your Comment data value between "0" to "256"
+      When Click on the clear button
+      Then Data in all filed should be empty
+
+      Examples:
+        |your comment text value                                         | if not match then error message                    |
+        |your comment text field will have brief information about you   |                                                    |
+        |This value should be less than 256 characters                   |                                                    |
 
 
-    Scenario: Insert data to Say It here text field
-      When set "say It here about your thoughts" to say It here text field
-      And Say It here data value should be alphanumeric values
-      And Check validation of the Say It here data value between "0" to "256"
-      And Click on the clear button
+    Scenario Outline: Insert data to Say It Here text field
+      When set "<say it here text value>" to say It here text field
+      Then Check the say It here text value existence otherwise then the error "<if not match then error message>"
+      And  Say It here data value should not be only numeric values
+      And  Check validation of the Say It here data value between "0" to "256"
+      When Click on the clear button
+      Then Data in all filed should be empty
+
+      Examples:
+        |say it here text value                                         | if not match then error message                    |
+        |say It here about your thoughts                                |                                                    |
+        |This value should be less than 256 characters                  |                                                    |
 
 
-    Scenario: Insert data to Resume text Area
-      When set "insert data of resume" to Resume text Area
-       And Click on the clear button
+  Scenario Outline: Insert data to Resume text Area
+      When set "<Resume text value>" to Resume text Area
+      Then Check the Resume text value existence otherwise then the error "<if not match then error message>"
+      And  Resume text field should have some string value
+      And  Resume text data value should not be only numeric values
+      When Click on the clear button
+      Then Data in all filed should be empty
+
+    Examples:
+      |Resume text value                                              | if not match then error message                    |
+      |insert data of resume                                          |                                                    |
 
 
-    Scenario Outline: Mark and Unmark for the Age over 18
+
+  Scenario Outline: Mark and Unmark for the Age over 18
       When set "<value of selection Age Limit>" to mark and unmark the age limit
       And Click on the clear button
+      Then Data in all filed should be empty
 
       Examples:
         |value of selection Age Limit |
@@ -84,6 +120,7 @@ Feature: Testing of Single Element data providing
     Scenario Outline: Mark and Unmark for Advertise on home page
       When set "<value of selection of Advertise on Home Page>" to mark and unmark Advertise on home page
       And Click on the clear button
+      Then Data in all filed should be empty
 
       Examples:
         |value of selection of Advertise on Home Page |
@@ -92,8 +129,9 @@ Feature: Testing of Single Element data providing
 
 
     Scenario Outline: Selecting Marital Status Radio via radio button
-    When Select the Marital Status in Radio button "<radio Button position indexing>".
-    And Click on the clear button
+      When Select the Marital Status in Radio button "<radio Button position indexing>".
+      And  Click on the clear button
+      Then Data in all filed should be empty
 
     Examples:
       |radio Button position indexing |
@@ -104,10 +142,11 @@ Feature: Testing of Single Element data providing
 
 
     Scenario Outline: Selecting Marital Status from dropdown list item
-    When Open Drop down list for selecting Marital Status.
-    And  Select the Marital Status from the dropdown list "<drop down indexing>".
-    And  Check the selected value "<expected value>" and provide value for the mismatch error "<if not match then Message>"
-    And  Click on the clear button
+      When  Open Drop down list for selecting Marital Status.
+      And   Select the Marital Status from the dropdown list "<drop down indexing>".
+      Then  Check the selected value "<expected value>" and provide value for the mismatch error "<if not match then Message>"
+      When  Click on the clear button
+      Then  Data in all filed should be empty
 
     Examples:
       |drop down indexing |expected value  |if not match then Message    |
@@ -116,27 +155,33 @@ Feature: Testing of Single Element data providing
       |2                  |Single          |                             |
       |3                  |Divorced        |                             |
       |4                  |Widow           |                             |
-      |0                  |(Status)        |Selected item is not matched |
-      |1                  |Marri ed        |Selected item is not matched |
-      |2                  |Si ngle         |Selected item is not matched |
-      |3                  |Di orced        |Selected item is not matched |
-      |4                  |Wiw             |Selected item is not matched |
 
 
+      #I not know the nature of the this field so I can not put the check accordingly
     Scenario: Insert data to Attitude text field
       When set "Attitude value" to Attitude text field
       And Click on the clear button
+      Then Data in all filed should be empty
 
 
-    Scenario: Insert data to My ID text field
-      When set "qwerty98765" to My ID text field
+    Scenario Outline: Insert data to My ID text field
+      When set "<My Id Text Value>" to My ID text field
+      Then check for the MY ID value should not be empty
       And Click on the clear button
+      Then Data in all filed should be empty
+
+      Examples:
+        |My Id Text Value   |
+        |some value for ID  |
+        |qwerty9876         |
+        |qazwsxplmokn       |
 
 
-    Scenario Outline: Selecting My Income from dropdown list item
+
+  Scenario Outline: Selecting My Income from dropdown list item
       When Open Drop down list for selecting My Income.
       And  Select the My Income from the dropdown list "<drop down indexing>".
-      And  Check My Income selected value "<expected value>" and provide value for the mismatch error "<if not match then Message>"
+      Then  Check My Income selected value "<expected value>" and provide value for the mismatch error "<if not match then Message>"
       And  Click on the clear button
 
       Examples:
