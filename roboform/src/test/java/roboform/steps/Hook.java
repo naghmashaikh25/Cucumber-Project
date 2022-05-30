@@ -39,7 +39,7 @@ public class Hook extends BaseUtils {
         base.Driver = new ChromeDriver(options);
         base.Driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
         base.Driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        base.Driver.manage().timeouts().setScriptTimeout(60, TimeUnit.SECONDS);
+        base.Driver.manage().timeouts().setScriptTimeout(80, TimeUnit.SECONDS);
 
     }
 
